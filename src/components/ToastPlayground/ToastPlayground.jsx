@@ -24,12 +24,13 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <Toast
-        message={message}
-        variant={variant}
-        isVisible={isToastVisible}
-        toggleVisibility={toggleToastVisibility}
-      />
+      {isToastVisible && (
+        <Toast
+          message={message}
+          variant={variant}
+          toggleVisibility={toggleToastVisibility}
+        />
+      )}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>

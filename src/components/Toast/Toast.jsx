@@ -18,8 +18,8 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message, variant, isVisible, toggleVisibility }) {
-  if (message.trim() === "" || isVisible === false) {
+function Toast({ message, variant, toggleVisibility }) {
+  if (message.trim() === "") {
     return;
   }
   const Icon = ICONS_BY_VARIANT[variant];
