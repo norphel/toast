@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message, variant, toggleVisibility }) {
+function Toast({ message, variant, handleDismiss }) {
   if (message.trim() === "") {
     return;
   }
@@ -30,7 +30,7 @@ function Toast({ message, variant, toggleVisibility }) {
         <Icon size={24} />
       </div>
       <p className={styles.content}>{message}</p>
-      <button className={styles.closeButton} onClick={toggleVisibility}>
+      <button className={styles.closeButton} onClick={handleDismiss}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>

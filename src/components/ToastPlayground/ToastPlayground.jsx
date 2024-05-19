@@ -28,7 +28,7 @@ function ToastPlayground() {
         <Toast
           message={message}
           variant={variant}
-          toggleVisibility={toggleToastVisibility}
+          handleDismiss={() => setIsToastVisible(false)}
         />
       )}
 
