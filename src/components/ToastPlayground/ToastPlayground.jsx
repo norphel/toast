@@ -14,7 +14,9 @@ function ToastPlayground() {
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
   const [toasts, setToasts] = React.useState([]);
 
-  function addToast() {
+  function submitToast(event) {
+    event.preventDefault();
+
     if (message.trim() === "") {
       return;
     }
@@ -24,6 +26,8 @@ function ToastPlayground() {
       variant,
     };
     setToasts([...toasts, newToast]);
+    setMessage("");
+    setVariant(VARIANT_OPTIONS[0]);
   }
 
   const removeToast = React.useCallback(
@@ -43,7 +47,10 @@ function ToastPlayground() {
 
       <ToastShelf toasts={toasts} removeToast={removeToast} />
 
-      <div className={styles.controlsWrapper}>
+      <form
+        onSubmit={(event) => submitToast(event)}
+        className={styles.controlsWrapper}
+      >
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -84,10 +91,10 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button onClick={addToast}>Pop Toast!</Button>
+            <Button>Pop Toast!</Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
