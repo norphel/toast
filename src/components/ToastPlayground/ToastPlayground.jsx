@@ -5,6 +5,7 @@ import ToastShelf from "../ToastShelf";
 
 import styles from "./ToastPlayground.module.css";
 import toast from "../../assets/toast.png";
+import { ToastContext } from "../ToastProvider";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
@@ -12,7 +13,7 @@ function ToastPlayground() {
   // console.log("ToastPlayground rendered!");
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
-  const [toasts, setToasts] = React.useState([]);
+  const { addNewToast } = React.useContext(ToastContext);
 
   function submitToast(event) {
     event.preventDefault();
@@ -20,23 +21,12 @@ function ToastPlayground() {
     if (message.trim() === "") {
       return;
     }
-    const newToast = {
-      id: Math.random(),
-      message,
-      variant,
-    };
-    setToasts([...toasts, newToast]);
+
+    addNewToast(message, variant);
+
     setMessage("");
     setVariant(VARIANT_OPTIONS[0]);
   }
-
-  const removeToast = React.useCallback(
-    function (id) {
-      const remainingToasts = toasts.filter((toast) => toast.id !== id);
-      setToasts(remainingToasts);
-    },
-    [toasts]
-  );
 
   return (
     <div className={styles.wrapper}>
@@ -45,7 +35,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf toasts={toasts} removeToast={removeToast} />
+      <ToastShelf />
 
       <form
         onSubmit={(event) => submitToast(event)}
