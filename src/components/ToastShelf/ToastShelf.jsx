@@ -5,12 +5,12 @@ import { ToastContext } from "../ToastProvider";
 import styles from "./ToastShelf.module.css";
 
 function ToastShelf() {
-  const { toasts, removeToast } = React.useContext(ToastContext);
+  const { toasts, dismissAllToasts } = React.useContext(ToastContext);
 
   React.useEffect(() => {
     function handleKeyDown(event) {
       if (event.code === "Escape") {
-        toasts.forEach((toast) => removeToast(toast.id));
+        dismissAllToasts();
       }
     }
     window.addEventListener("keydown", handleKeyDown);
