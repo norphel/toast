@@ -2,6 +2,8 @@
 
 A basic implementation of Toast messages
 
+[Live Preview](https://norphel.github.io/toast/)
+
 Following React concepts were implemented while building this:
 
 - useState()
@@ -10,4 +12,4 @@ Following React concepts were implemented while building this:
 - Context
 - custom hooks
 
-_Followed instructions provided in this [repositor](https://github.com/joy-of-react/project-toast)_
+_Followed instructions provided in this [repository](https://github.com/joy-of-react/project-toast)_
